@@ -72,6 +72,7 @@ class ExternalMergeSort :
             if not min:
                 break      
             file.write(min +"\n")
+        print("LAST NODE :" + self.heapnodes[0].elem)
         for node in self.heapnodes:
             node.closeFile()
         file.close()
@@ -80,10 +81,12 @@ class ExternalMergeSort :
         min = self.heapnodes[0].elem
         minIndex = 0
         index = 0
+        
         for node in self.heapnodes:
             if node.elem and node.elem <= min:
                 min = node.elem
                 minIndex = index
+
             index += 1
         self.heapnodes[minIndex].nextElem()
         return min
@@ -95,13 +98,7 @@ merge.splitFile(INPUT_FILE_NAME,BLOCK_SIZE)
 merge.printFilesPaths()
 merge.sortMerge(OUTPUT_FILE_NAME)
 
-f= open("Temp/subfile0.txt","r+")
-while True:
-    line = f.readline()
-    print("LINE : " + line)
-    if not line:
-        break
-f.close()
+
 
             
             
