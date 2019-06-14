@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Jun 13 21:10:53 2019
-
+Check if the sorted file is correct by sorting the unsorted file using the sorted method of the default library
+and comparing if the output matchs with the sorted file
 @author: Léo
 """
 
@@ -31,6 +32,7 @@ def sortCheck(unsorted_file_name,sorted_file_name):
             return 0
     return 1
 
+"""MAIN"""
 if(sortCheck(UNSORTED_FILE_NAME,SORTED_FILE_NAME) == 0):
     print("Le résultat du tri ne correspond pas au résultat attendu")
 else:

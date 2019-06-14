@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Jun 13 17:39:26 2019
-
+Program that generate a file txt with NB_WORD lines composed of 1 to WORD_MAX_LENGTH random characters
 @author: Léo
 """
 

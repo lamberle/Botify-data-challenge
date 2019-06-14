@@ -15,13 +15,18 @@ start_index = 0
 end_index = start_index + BLOCK_SIZE
 
 class heapnode:
-    """elem : first elem of file, file : sorted file to merge"""
+    """
+    Class that represent each subfile as its mean value (the first elem) and the file itself
+    elem : first elem of file, file : sorted file to merge
+    """
 
     def __init__(self, elem, file,):
         self.elem = elem
         self.file = file
+    #replace the current min with the next elem in the file
     def nextElem(self):
         self.elem = self.file.readline().strip()
+        print(self.elem)
     def closeFile(self):
         self.file.close()
 
@@ -55,35 +60,43 @@ class ExternalMergeSort :
                     f.close();
                     subfileIndex +=1
                     subfileContent = []
-    def printFilesPaths(self):
-        for filePath in self.subFilesPath:
-            print(filePath)
+        
+    #create a node for each subfile
     def createHeapNodes(self):
         for filePath in self.subFilesPath:
             f = open(filePath,"r+")
             self.heapnodes.append(heapnode(f.readline().strip(),f))
+            
+    #Merge the subfiles into the output file specified
     def sortMerge(self,ouputFileName):
         file = open(ouputFileName,"w+")
         self.createHeapNodes()
-        for node in self.heapnodes:
-            print(node.elem)
         while True :
             min = self.getMinHeap()
             if not min:
                 break      
             file.write(min +"\n")
-        print("LAST NODE :" + self.heapnodes[0].elem)
         for node in self.heapnodes:
             node.closeFile()
         file.close()
         
+    #get the min of the heapnodes and replace the min of the node with the next value
     def getMinHeap(self):
         min = self.heapnodes[0].elem
+        index=0
         minIndex = 0
+        
+        #we make sure the min is not null
+        while not min and int(index) < len(self.heapnodes):
+            min = self.heapnodes[index].elem
+            minIndex = index
+            index +=1
+            
+        
         index = 0
         
         for node in self.heapnodes:
-            if node.elem and node.elem <= min:
+            if node.elem and node.elem < min:
                 min = node.elem
                 minIndex = index
 
@@ -92,10 +105,9 @@ class ExternalMergeSort :
         return min
             
         
-
+"""MAIN"""
 merge = ExternalMergeSort()               
 merge.splitFile(INPUT_FILE_NAME,BLOCK_SIZE)
-merge.printFilesPaths()
 merge.sortMerge(OUTPUT_FILE_NAME)
 
 
