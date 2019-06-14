@@ -26,7 +26,6 @@ class heapnode:
     #replace the current min with the next elem in the file
     def nextElem(self):
         self.elem = self.file.readline().strip()
-        print(self.elem)
     def closeFile(self):
         self.file.close()
 
