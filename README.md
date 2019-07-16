@@ -1,6 +1,5 @@
-BOTIFY DATA CHALLENGE
+DATA CHALLENGE
 
-Projet réalisé comme test technique pour Botify.
 Le but de se projet était de réaliser un programme permettant d'effectuer un external sorting sur un fichier donné.
 
 Ce projet a été réaliser en Python en utilisant l'IDE Spyder, pour la synchronisation avec GITHub j'ai utilisé GIT Kraken.
